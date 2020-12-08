@@ -42,6 +42,11 @@
     {{ content | safe }}
   </article>
 
+  {% set linkStyles = "transition-colors duration-150 text-blue-600 hover:text-blue-900" %}
+  <footer class="text-center py-8">
+    Made with <a class="{{linkStyles}}" href="https://www.typescriptlang.org/"><i class="inline text-blue-600" data-feather="heart" width="16"></i></a> by <a class="{{linkStyles}}" href="https://github.com/Yago">Yago</a> on <a class="{{linkStyles}}" href="https://github.com/Yago/typescript-cheatsheet">Github</a> 
+  </footer>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/components/prism-core.min.js" integrity="sha512-hqRrGU7ys5tkcqxx5FIZTBb7PkO2o3mU6U5+qB9b55kgMlBUT4J2wPwQfMCxeJW1fC8pBxuatxoH//z0FInhrA==" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/autoloader/prism-autoloader.min.js" integrity="sha512-Q3qGP1uJL/B0sEmu57PKXjCirgPKMbg73OLRbTJ6lfHCVU5zkHqmcTI5EV2fSoPV1MHdKsCBE7m/aS6q0pPjRQ==" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/components/prism-typescript.min.js" integrity="sha512-5KnWNKu6jz8OE4nIBndz3PZ4O3RGqcPNcsyEFZkx3F5N8liSwc3bCe4qPOa/a3+e4CxVl0izHMXeZ0Z4yk7LTA==" crossorigin="anonymous"></script>
