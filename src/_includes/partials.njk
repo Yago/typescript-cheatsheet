@@ -1,0 +1,32 @@
+{% macro sectionTitle() %}
+<h2 class="text-lg md:text-xl xl:text-2xl text-grey-800 font-medium">
+  {{ caller() }}
+</h2>
+{% endmacro %}
+
+{% macro subTitle() %}
+<h3 class="mt-4 text-lg text-grey-800 font-medium">
+  {{ caller() }}
+</h3>
+{% endmacro %}
+
+{% macro external(url) %}
+<a href="{{ url }}" target="_blank" class="transition-colors duration-150 text-blue-600 hover:text-blue-900">
+  <span class="sr-only">See the official TypeScript documentation page</span>
+  <i class="inline transform -translate-y-1" data-feather="external-link" width="16"></i>
+</a>
+{% endmacro %}
+
+{% macro code(lang='ts') %}
+<div class="mt-4">
+  <pre class="rounded-lg">
+    <code class="language-{{lang}}">
+      {{ caller() }}
+    </code>
+  </pre>
+</div>
+{% endmacro %}
+
+{% macro separator() %}
+<hr class="mt-5 xl:mt-7 mb-3 xl:mb-4 border-blue-100" />
+{% endmacro %}

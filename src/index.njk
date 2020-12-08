@@ -1,0 +1,270 @@
+---
+layout: layouts/base.njk
+---
+{% from "partials.njk" import sectionTitle, subTitle, external, code, separator %}
+{% set linkStyles = "transition-colors duration-150 text-blue-600 hover:text-blue-900" %}
+
+<div class="flex space-x-6">
+  <div class="w-full md:w-1/2">
+    {% call sectionTitle() %}
+      Type Inference
+      {{ external('//www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html#types-by-inference') }}
+    {% endcall %}
+
+    <p class="mt-4">
+      Without explicitly typing your variables, TypeScript is hable to infer types.
+    </p>
+
+    {% call code() %}
+      const ide = 'VSCode'; // It's "VSCode"
+      let browser = 'Brave'; // It's string
+      if (browser === 'Brave') {/* here */} // It's "Brave"
+      const theme = { name: 'Material' } // theme.name is string
+    {% endcall %}
+
+    {{ separator() }}
+
+    {% call sectionTitle() %}
+      Basic Types
+      {{ external('//www.typescriptlang.org/docs/handbook/basic-types.html') }}
+    {% endcall %}
+
+    {% call code() %}
+      boolean, string, number, number[], [string, number],
+      unknown, any, void, null, undefined, never 
+    {% endcall %}
+
+    {{ separator() }}
+
+    {% call sectionTitle() %}
+      Custom Types
+      {{ external('//www.typescriptlang.org/docs/handbook/interfaces.html') }}
+    {% endcall %}
+
+    <div class="flex">
+      <div class="w-1/2">
+        {% call code() %}
+          type Person = {
+            fullname: string,
+          }
+        {% endcall %}
+      </div>
+      <div class="flex items-center px-3">
+        or
+      </div>
+      <div class="w-1/2">
+        {% call code() %}
+          interface Person {
+            fullname: string;
+          }
+        {% endcall %}
+      </div>
+    </div>
+
+    <p class="mt-2">
+      <em>Here is a <a class="{{linkStyles}}" href="https://blog.logrocket.com/types-vs-interfaces-in-typescript/" target="_blank">good article</a> about choosing <code>type</code> or <code>interface</code></em>
+    </p>
+
+    {% call code() %}
+      type Person = {
+        name: string, // mandatory
+        age?: number, // optional
+        prefer: 'cat' | 'dog', // narrower
+        readonly birthdate: string, // read only
+        getName(): string, // function returns
+      }
+    {% endcall %}
+
+    {{ separator() }}
+
+    {% call sectionTitle() %}
+      Functions
+      {{ external('//www.typescriptlang.org/docs/handbook/functions.html') }}
+    {% endcall %}
+
+    {% call code() %}
+      const add = (x: number, y: number): number => x + y;
+    {% endcall %}
+    <p>or</p>
+    {% call code() %}
+      type Add = (base: number, increment: number) => number;
+      const add: Add = (x, y) => x + y;
+    {% endcall %}
+
+    {% call subTitle() %}Rest parameters{% endcall %}
+    {% call code() %}
+      const joinList = (...items: string[]) => items.join(' ');
+    {% endcall %}
+
+    {% call subTitle() %}Async{% endcall %}
+    {% call code() %}
+      const fetchItems = (query: string): &lt;Promise&lt;string[]&gt;&gt; => {
+        return fetch(`/items?q=${query});  
+      };
+    {% endcall %}
+
+    {% call subTitle() %}
+      This
+      {{ external('//www.typescriptlang.org/docs/handbook/functions.html#this') }}
+    {% endcall %}
+
+    {% call code() %}
+      function printValue(this: HTMLElement): void {
+        console.log(this.target.value);
+      }
+    {% endcall %}
+
+    {{ separator() }}
+
+    {% call sectionTitle() %}
+      Export/Import types
+    {% endcall %}
+
+    {% call code() %}
+      export type Cat = { name: string };
+      import type { Cat } from './my-types';
+    {% endcall %}
+
+    {{ separator() }}
+
+    {% call sectionTitle() %}
+      React simple pattern
+    {% endcall %}
+
+    {% call code('tsx') %}
+      import React, { useState } from 'react';
+
+      type Props = {
+        open: boolean,
+        onOpen(open: boolean): void,
+      }
+
+      const Accordion = ({ open, onOpen }: Props): JSX.Element => {
+        const [active, setActive] = useState&lt;number | null&gt;(null);
+        
+        return (/* ... */);
+      };
+
+      export default Accordion;
+    {% endcall %}
+  </div>
+
+  <div class="w-1/2">
+    {% call sectionTitle() %}
+      Unions and Intersection Types
+      {{ external('//www.typescriptlang.org/docs/handbook/unions-and-intersections.html') }}
+    {% endcall %}
+
+    {% call code() %}
+      type Artwork = { title: string }
+    {% endcall %}
+
+    {% call subTitle() %}Intersection{% endcall %}
+    {% call code() %}
+      type Movie = Artwork & { duration: number, kind: 'movie' }
+      type Photograph = Artwork & { iso: number, kind: 'photograph' }
+    {% endcall %}
+
+    {% call subTitle() %}Union{% endcall %}
+    {% call code() %}
+      type PortfolioItem = Movie | Photograph;
+    {% endcall %}
+
+    {% call subTitle() %}Dynamic Union{% endcall %}
+    {% call code() %}
+      type ArtKind = PortfolioItem['kind']; // 'movie' | 'photograph'
+    {% endcall %}
+
+    {% call subTitle() %}
+      Mapped Types
+      {{ external('//www.typescriptlang.org/docs/handbook/advanced-types.html#mapped-types') }}
+    {% endcall %}
+    {% call code() %}
+      type GroupedItem = {
+        [Kind in ArtKind]: PortfolioItem[]
+      }
+      // Is equal to
+      type GroupedItem = {
+        movie: PortfolioItem[],
+        photograph: PortfolioItem[],
+      }
+    {% endcall %}
+
+    {% call subTitle() %}keyof{% endcall %}
+    {% call code() %}
+      type MovieProperties = keyof Movie // 'title' | 'duration' | 'kind'
+    {% endcall %}
+
+    {{ separator() }}
+
+    {% call sectionTitle() %}
+      Generics
+      {{ external('//www.typescriptlang.org/docs/handbook/generics.html') }}
+    {% endcall %}
+
+    <p class="mt-4">
+      Generics are like functions, it takes arguments that can be used in the type definition.
+    </p>
+
+    {% call code() %}
+      type PortfolioItem&lt;Kind extends Kinds&gt; = {
+        title: string;
+        kind: Kind;
+      };
+      const myArtWork: PortfolioItem<'movie'> = {/*...*/};
+
+      const identity = &lt;T&gt;(arg: T): T => arg; // not very usefull ^^'
+      // Takes a type T, arg is a type of T and returns a type T
+      identity('Hello'); // OK
+      identity(42); // OK
+      identity(true); // OK
+    {% endcall %}
+
+    {% call subTitle() %}
+      Utility Types
+      {{ external('//www.typescriptlang.org/docs/handbook/utility-types.html#picktype-keys') }}
+    {% endcall %}
+
+    {% call code() %}
+      // Partial type
+      const changeTitle = (movie: Movie, newTitle: Partial&lt;Movie&gt;) => {
+        return { ...movie, title: newTitle };
+      };
+
+      // Readonly type
+      const sw: Readonly&lt;Movie&gt; = { title: 'Star Wars', duration: 121 };
+      sw.title = 'Star Trek'; // Error!
+
+      // Record, like an object description &lt;key, type&gt;
+      const library: Record&lt;string, Movie&gt; = {
+        starWars: { title: 'Star Wars', duration: 121 }
+      };
+
+      // Pick certains attributes
+      const titleOnly: Pick&lt;Movie, &apos;title&apos;&gt; = { title: 'Her' };
+
+      // Omit certains attributes
+      const noTitle: Omit&lt;Movie, &apos;title&apos;&gt; = { duration: 90 };
+    {% endcall %}
+
+    {{ separator() }}
+
+    {% call sectionTitle() %}
+      Conditional Types
+      {{ external('//www.typescriptlang.org/docs/handbook/advanced-types.html#conditional-types') }}
+    {% endcall %}
+
+    {% call code() %}
+      type Library&lt;Item extends PortfolioItem&gt; =
+        Item extends Movie ? Movie[] :
+        Item extends Photograph ? Photograph[] : never
+
+      type SelectItem&lt;Item, Kin&gt; =
+        Item extends { kind: Kin } ? Item : never
+
+      // With infer keyword
+      type GetReturnType<T> = T extends (...args: never[]) =>
+        infer U ? U : never;
+    {% endcall %}
+  </div>
+</div>

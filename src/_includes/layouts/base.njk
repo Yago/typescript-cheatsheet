@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TypeScript - Cheat Sheet</title>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Fira+Sans:wght@600&family=Inter:wght@300&display=swap" rel="stylesheet">
+
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/unescaped-markup/prism-unescaped-markup.min.css" integrity="sha512-g33HCZ23fueSK96JEeoy9DelAlu7Ry5mtxqLk+zlEiPj7NIpFI6T9mybOvQxjBN50FALFDCviMXiLqWJcFwzaA==" crossorigin="anonymous" />
+
+  <style>
+    html, body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, h4 { font-family: 'Fira Sans', sans-serif; }
+    pre {
+      padding: 0.6em 1em !important;
+      background: #F0F4F6 !important
+    }
+    code { font-family: 'Fira Code', monospace !important; }
+    .language-css .token.string, .style .token.string, .token.entity, .token.operator, .token.url { background: transparent; }
+  </style>
+</head>
+<body class="text-sm xl:text-base">
+  <article class="max-w-screen-2xl mx-auto px-4 md:px-8 mb-8">
+    <header class="pb-6 md:pb-0 pt-6 xl:pt-8">
+      <h1 class="flex items-center justify-center text-2xl md:text-4xl font-medium text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-900">
+        <img src="/images/ts-logo.svg" alt="TypeScript language logotype with blue background and white T and S letters" class="w-8 md:w-12" />
+        <span class="pl-2 md:pl-4">TypeScript Cheat Sheet</span>
+      </h1>
+    </header>
+
+    <div class="hidden md:flex space-x-6 text-center mt-3 mb-2">
+      <div class="w-1/2">Basics 👇</div>
+      <div class="w-1/2">Advanced 👇</div>
+    </div>
+
+    <hr class="mb-6 border-blue-200" />
+
+    {{ content | safe }}
+  </article>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/components/prism-core.min.js" integrity="sha512-hqRrGU7ys5tkcqxx5FIZTBb7PkO2o3mU6U5+qB9b55kgMlBUT4J2wPwQfMCxeJW1fC8pBxuatxoH//z0FInhrA==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/autoloader/prism-autoloader.min.js" integrity="sha512-Q3qGP1uJL/B0sEmu57PKXjCirgPKMbg73OLRbTJ6lfHCVU5zkHqmcTI5EV2fSoPV1MHdKsCBE7m/aS6q0pPjRQ==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/components/prism-typescript.min.js" integrity="sha512-5KnWNKu6jz8OE4nIBndz3PZ4O3RGqcPNcsyEFZkx3F5N8liSwc3bCe4qPOa/a3+e4CxVl0izHMXeZ0Z4yk7LTA==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js" integrity="sha512-VTY+zyTivsIMZ+ANMHvwsnz0hIRHyu/I+7vLqaGaQs//PnQEuNyrLsCwNYo64H92vHojvj2Oiq7bfli0fTSDkQ==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/plugins/unescaped-markup/prism-unescaped-markup.min.js" integrity="sha512-su3P9CAb/80tGGN8pRycUQGze/CYgZ90Wn+3dmR0EGTD9hUP5BgVn26vEvHvAwe3K1LG1cHsz90H+jdEQL43FQ==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" integrity="sha512-7x3zila4t2qNycrtZ31HO0NnJr8kg2VI67YLoRSyi9hGhRN66FHYWr7Axa9Y1J9tGYHVBPqIjSE1ogHrJTz51g==" crossorigin="anonymous"></script>
+  <script>
+    feather.replace()
+  </script>
+</body>
+</html>
