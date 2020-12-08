@@ -34,6 +34,16 @@ layout: layouts/base.njk
       unknown, any, void, null, undefined, never 
     {% endcall %}
 
+    {% call subTitle() %}
+      Assertions
+      {{ external('//www.typescriptlang.org/docs/handbook/basic-types.html#type-assertions') }}
+    {% endcall %}
+
+    {% call code() %}
+      let layout: unknown = 'qwertz'; // layout is unknown
+      let length: number = (layout as string).length; // layout is string
+    {% endcall %}
+
     {{ separator() }}
 
     {% call sectionTitle() %}
