@@ -55,8 +55,8 @@ layout: layouts/base.njk
       <div class="w-1/2">
         {% call code() %}
           type Person = {
-            fullname: string,
-          }
+            fullname: string;
+          };
         {% endcall %}
       </div>
       <div class="flex items-center px-3">
@@ -66,7 +66,7 @@ layout: layouts/base.njk
         {% call code() %}
           interface Person {
             fullname: string;
-          }
+          };
         {% endcall %}
       </div>
     </div>
@@ -77,11 +77,11 @@ layout: layouts/base.njk
 
     {% call code() %}
       type Person = {
-        name: string, // mandatory
-        age?: number, // optional
-        prefer: 'cat' | 'dog', // narrower
-        readonly birthdate: string, // read only
-        getName(): string, // function returns
+        name: string; // mandatory
+        age?: number; // optional
+        prefer: 'cat' | 'dog'; // narrower
+        readonly birthdate: string; // read only
+        getName(): string; // function returns
       }
     {% endcall %}
 
@@ -145,20 +145,19 @@ layout: layouts/base.njk
       import React, { useState } from 'react';
 
       type Props = {
-        open: boolean,
-        onOpen(open: boolean): void,
+        open: boolean;
+        onOpen(open: boolean): void;
       }
 
       const Accordion = ({ open, onOpen }: Props): JSX.Element => {
         const [active, setActive] = useState&lt;number | null&gt;(null);
-        
         return (/* ... */);
       };
 
       export default Accordion;
     {% endcall %}
   </div>
-
+  <!--////////////////////////////////////////////////////////////////////// -->
   <div class="w-1/2">
     {% call sectionTitle() %}
       Unions and Intersection Types
@@ -171,8 +170,8 @@ layout: layouts/base.njk
 
     {% call subTitle() %}Intersection{% endcall %}
     {% call code() %}
-      type Movie = Artwork & { duration: number, kind: 'movie' }
-      type Photograph = Artwork & { iso: number, kind: 'photograph' }
+      type Movie = Artwork & { duration: number; kind: 'movie' }
+      type Photograph = Artwork & { iso: number; kind: 'photograph' }
     {% endcall %}
 
     {% call subTitle() %}Union{% endcall %}
@@ -191,18 +190,18 @@ layout: layouts/base.njk
     {% endcall %}
     {% call code() %}
       type GroupedItem = {
-        [Kind in ArtKind]: PortfolioItem[]
-      }
+        [Kind in ArtKind]: PortfolioItem[];
+      };
       // Is equal to
       type GroupedItem = {
-        movie: PortfolioItem[],
-        photograph: PortfolioItem[],
-      }
+        movie: PortfolioItem[];
+        photograph: PortfolioItem[];
+      };
     {% endcall %}
 
     {% call subTitle() %}keyof{% endcall %}
     {% call code() %}
-      type MovieProperties = keyof Movie // 'title' | 'duration' | 'kind'
+      type MovieProperties = keyof Movie; // 'title' | 'duration' | 'kind'
     {% endcall %}
 
     {{ separator() }}
@@ -267,10 +266,10 @@ layout: layouts/base.njk
     {% call code() %}
       type Library&lt;Item extends PortfolioItem&gt; =
         Item extends Movie ? Movie[] :
-        Item extends Photograph ? Photograph[] : never
+        Item extends Photograph ? Photograph[] : never;
 
       type SelectItem&lt;Item, Kin&gt; =
-        Item extends { kind: Kin } ? Item : never
+        Item extends { kind: Kin } ? Item : never;
 
       // With infer keyword
       type GetReturnType<T> = T extends (...args: never[]) =>
